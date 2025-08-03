@@ -1,0 +1,24 @@
+[user]
+    name = Eric Sigurdson
+    email = eric@ericsigurdson.com
+    signingKey = /home/erics/.ssh/id_ed25519
+
+[init]
+    defaultBranch = main
+
+[core]
+    editor = nvim
+    excludesFile = /home/erics/.config/git/ignore
+
+[gpg]
+    format = ssh
+
+[gpg "ssh"]
+    allowedSignersFile = /home/erics/.ssh/allowed_signers
+
+[commit]
+    gpgsign = true
+
+[includeIf "gitdir:~/Repos/work/"]
+    path = ~/.gitconfig-work
+
