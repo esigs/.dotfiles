@@ -1,5 +1,6 @@
 alias ls='ls -la --color=auto'
 
+set -o vi
 export EDITOR=nvim
 export VISUAL=nvim
 
@@ -9,4 +10,4 @@ export HISTFILESIZE=20000
 
 shopt -s histappend                  # append to history file, don't overwrite
 
-set -o vi
+

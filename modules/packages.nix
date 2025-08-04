@@ -14,6 +14,7 @@
     neovim
     networkmanagerapplet
     pa_applet
+    pavucontrol
     tmux
     tree
     unzip
