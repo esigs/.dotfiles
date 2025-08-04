@@ -13,6 +13,7 @@
     htop
     neovim
     networkmanagerapplet
+    pa_applet
     tmux
     tree
     unzip

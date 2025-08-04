@@ -8,19 +8,20 @@
 
 	services.xserver.windowManager.i3.enable = true;
 
-# Enable another display manager (like sddm or lightdm)
+	# Enable another display manager (like sddm or lightdm)
 	services.xserver.displayManager.sddm.enable = true;
 
+	# These are here because I think about them when I think about window managers
 	environment.systemPackages = with pkgs; [
 			acpi
+			alacritty
 			arandr
 			autorandr
-			powertop
-			tlp
+			dmenu
 			i3
 			i3status
-			dmenu
-			alacritty
+			powertop
+			tlp 
 	];
 	services.tlp.enable = true;
 
