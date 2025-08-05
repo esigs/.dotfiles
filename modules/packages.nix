@@ -15,11 +15,13 @@
     networkmanagerapplet
     pa_applet
     pavucontrol
+    xfce.thunar
     tmux
     tree
     unzip
     xclip
     zip
+    libreoffice
 
     # language servers 
     bash-language-server

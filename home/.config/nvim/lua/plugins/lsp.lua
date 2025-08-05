@@ -51,7 +51,11 @@ return {
 			end
 
 			setup_lsp("bashls")
-			setup_lsp("clojure_lsp")
+			setup_lsp("clojure_lsp", {
+				handlers = {
+					["textDocument/publishDiagnostics"] = function() end
+				}
+			})
 			setup_lsp("lua_ls")
 			setup_lsp("nixd")
 		end,
