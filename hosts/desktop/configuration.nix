@@ -115,6 +115,11 @@
 	  ];
   };
 
+# enable docker
+virtualisation.docker = {
+  enable = true;
+};
+
 # Install firefox.
   programs.firefox.enable = true;
 
