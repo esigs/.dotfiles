@@ -24,6 +24,7 @@
 	in {
 		nixosConfigurations = {
 			x1 = mkHost "x1" ./hosts/x1/configuration.nix;
+			desktop = mkHost "x1" ./hosts/desktop/configuration.nix;
 		};
 	};
 }
