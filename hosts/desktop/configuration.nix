@@ -109,7 +109,7 @@
   users.users.erics = {
 	  isNormalUser = true;
 	  description = "Eric Sigurdson";
-	  extraGroups = [ "networkmanager" "wheel" "video" ];
+	  extraGroups = [ "networkmanager" "wheel" "video" "docker" ];
 	  packages = with pkgs; [
 #  thunderbird
 	  ];

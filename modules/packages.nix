@@ -7,21 +7,23 @@
     bitwarden-cli
     chromium
     curl
+    docker
+    docker-compose
     firefox
     flameshot
     git
     htop
+    libreoffice
     neovim
     networkmanagerapplet
     pa_applet
     pavucontrol
-    xfce.thunar
     tmux
     tree
     unzip
     xclip
+    xfce.thunar
     zip
-    libreoffice
 
     # language servers 
     bash-language-server
