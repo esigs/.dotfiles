@@ -1,4 +1,4 @@
-#include "Repos/Xresources-themes/light/base16-solarized-light.Xresources"
+#include ".Xresources-themes/light/base16-solarized-light.Xresources"
 
 xterm*faceName: JetBrains-Mono
 xterm*faceSize: 22
