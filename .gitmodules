@@ -1,0 +1,3 @@
+[submodule "home/.Xresources-themes"]
+	path = home/.Xresources-themes
+	url = https://github.com/janoamaral/Xresources-themes
