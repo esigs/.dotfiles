@@ -38,6 +38,18 @@ return {
 
           -- Formatting
           map("<leader>f", vim.lsp.buf.format, "Format file")
+
+          -- C#-specific keybindings using localleader (,)
+          if vim.bo[event.buf].filetype == "cs" then
+            vim.keymap.set("n", ",r", vim.lsp.buf.rename, { buffer = event.buf, desc = "LSP: Rename" })
+            vim.keymap.set("n", ",a", vim.lsp.buf.code_action, { buffer = event.buf, desc = "LSP: Code action" })
+            vim.keymap.set("v", ",a", vim.lsp.buf.code_action, { buffer = event.buf, desc = "LSP: Code action" })
+            vim.keymap.set("n", ",f", vim.lsp.buf.format, { buffer = event.buf, desc = "LSP: Format file" })
+            vim.keymap.set("v", ",f", vim.lsp.buf.format, { buffer = event.buf, desc = "LSP: Format selection" })
+            vim.keymap.set("n", ",d", vim.lsp.buf.definition, { buffer = event.buf, desc = "LSP: Go to definition" })
+            vim.keymap.set("n", ",R", vim.lsp.buf.references, { buffer = event.buf, desc = "LSP: References" })
+            vim.keymap.set("n", ",i", vim.lsp.buf.implementation, { buffer = event.buf, desc = "LSP: Implementation" })
+          end
         end,
       })
 
