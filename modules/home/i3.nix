@@ -4,6 +4,7 @@
   home.packages = with pkgs; [
     alacritty
     dmenu
+    flameshot
     pulseaudio # for pactl
   ];
 
@@ -18,6 +19,7 @@
         "${mod}+Return" = "exec alacritty";
         "${mod}+Shift+q" = "kill";
         "${mod}+d" = "exec --no-startup-id dmenu_run";
+        "Print" = "exec flameshot gui";
 
         # Media keys
         "XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle";
