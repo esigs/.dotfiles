@@ -3,6 +3,7 @@
 {
   home.packages = with pkgs; [
     nodejs_22
+    python3
     bitwarden-cli
     
     # Clojure
