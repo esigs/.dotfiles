@@ -4,6 +4,7 @@
   imports = [
     ../../modules/home/zsh.nix
     ../../modules/home/packages.nix
+    ../../modules/home/i3.nix
   ];
 
   home.username = user;

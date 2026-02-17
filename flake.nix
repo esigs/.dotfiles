@@ -11,18 +11,13 @@
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
-      # Handle sudo by checking SUDO_USER, otherwise fall back to HOME
-      homeDir = let
-        sudoUser = builtins.getEnv "SUDO_USER";
-      in if sudoUser != "" then "/home/${sudoUser}" else builtins.getEnv "HOME";
-      
-      localFile = homeDir + "/.config/nixos-config/local.nix";
+      localFile = ./local.nix;
       local = if builtins.pathExists localFile
               then import localFile
-              else throw "Local configuration file not found at ${localFile}. Please create it to proceed.";
+              else throw "Local configuration file not found at ${toString localFile}. Please create it from the template.";
       user = if builtins.hasAttr "user" local
              then local.user
-             else throw "The 'user' attribute is missing in ${localFile}. Please define it.";
+             else throw "The 'user' attribute is missing in local.nix. Please define it.";
 
       mkHost = hostname: nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs user local; };

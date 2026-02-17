@@ -1,21 +1,26 @@
 # NixOS Config
 
 ## Setup
-Create `~/.config/nixos-config/local.nix`:
+Create `local.nix` in the root of this repository:
 ```nix
 {
+  user = "your_username";
   work = {
-    name = "Eric Sigurdson";
-    email = "eric.sigurdson@raw-digital.com";
+    name = "Full Name";
+    email = "work@email.com";
   };
   personal = {
-    name = "Eric Sigurdson";
-    email = "eric@ericsigurdson.com";
+    name = "Full Name";
+    email = "personal@email.com";
   };
 }
 ```
 
 ## Apply
 ```bash
-sudo nixos-rebuild switch --flake .#nixos-desktop --impure
+apply
+```
+Or manually:
+```bash
+sudo nixos-rebuild switch --flake path:.#nixos-desktop --impure
 ```
