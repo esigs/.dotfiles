@@ -20,6 +20,11 @@
     initContent = ''
       # Optional: Source p10k config if it exists
       [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+      # Auto-start/attach tmux
+      if [[ -z "$TMUX" ]] && [[ "$-" == *"i"* ]]; then
+        tmux attach-session -t default 2>/dev/null || tmux new-session -s default
+      fi
     '';
 
     plugins = [

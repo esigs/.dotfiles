@@ -5,6 +5,7 @@
     ../../modules/home/zsh.nix
     ../../modules/home/packages.nix
     ../../modules/home/i3.nix
+    ../../modules/home/tmux.nix
   ];
 
   home.username = user;
