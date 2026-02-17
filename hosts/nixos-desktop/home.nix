@@ -6,6 +6,7 @@
     ../../modules/home/packages.nix
     ../../modules/home/i3.nix
     ../../modules/home/tmux.nix
+    ../../modules/home/neovim.nix
   ];
 
   home.username = user;

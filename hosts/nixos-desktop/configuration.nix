@@ -76,7 +76,6 @@
   # Integrated programs
   programs.firefox.enable = true;
   programs.git.enable = true;
-  programs.neovim.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
