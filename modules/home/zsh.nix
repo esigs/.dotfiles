@@ -8,7 +8,7 @@
     syntaxHighlighting.enable = true;
     
     shellAliases = {
-      apply = "sudo nixos-rebuild switch --flake . --impure";
+      apply = "echo 'Running: sudo nixos-rebuild switch --flake . --impure' && sudo nixos-rebuild switch --flake . --impure";
     };
 
     history = {
