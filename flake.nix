@@ -23,18 +23,24 @@
       user = if builtins.hasAttr "user" local
              then local.user
              else throw "The 'user' attribute is missing in ${localFile}. Please define it.";
+
+      mkHost = hostname: nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs user; };
+        modules = [
+          ./hosts/${hostname}/configuration.nix
+          home-manager.nixosModules.home-manager {
+            home-manager.extraSpecialArgs = { inherit inputs user; };
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.${user} = import ./hosts/${hostname}/home.nix;
+          }
+        ];
+      };
     in {
-    nixosConfigurations.nixos-desktop = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs user; };
-      modules = [
-        ./hosts/nixos/configuration.nix
-        home-manager.nixosModules.home-manager {
-          home-manager.extraSpecialArgs = { inherit inputs user; };
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.${user} = import ./hosts/nixos/home.nix;
-        }
-      ];
+      nixosConfigurations = {
+        nixos-desktop = mkHost "nixos-desktop";
+        # Future hosts:
+        # nixos-laptop = mkHost "nixos-laptop";
+      };
     };
-  };
 }

@@ -57,10 +57,13 @@
     isNormalUser = true;
     description = "Eric Sigurdson";
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.zsh;
     packages = with pkgs; [
       # example package
     ];
   };
+
+  programs.zsh.enable = true;
 
   # Integrated programs
   programs.firefox.enable = true;

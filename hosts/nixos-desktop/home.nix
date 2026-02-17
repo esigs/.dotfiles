@@ -7,6 +7,10 @@ let
           else throw "Local configuration file not found at ${localFile}. Please create it to proceed.";
 in
 {
+  imports = [
+    ../../modules/home/zsh.nix
+  ];
+
   home.username = user;
   home.homeDirectory = "/home/${user}";
   home.stateVersion = "25.11";
