@@ -41,6 +41,10 @@ return {
           map("<leader>rn", vim.lsp.buf.rename, "Rename")
           map("<leader>ca", vim.lsp.buf.code_action, "Action")
           map("<leader>f", vim.lsp.buf.format, "Format")
+          map("<leader>d", vim.diagnostic.open_float, "Line Diagnostics")
+          map("[d", vim.diagnostic.goto_prev, "Previous Diagnostic")
+          map("]d", vim.diagnostic.goto_next, "Next Diagnostic")
+          map("<leader>sd", require("telescope.builtin").diagnostics, "Search Diagnostics")
         end,
       })
 
