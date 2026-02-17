@@ -17,5 +17,5 @@ Create `~/.config/nixos-config/local.nix`:
 
 ## Apply
 ```bash
-sudo nixos-rebuild switch --flake . --impure
+sudo nixos-rebuild switch --flake .#nixos-desktop --impure
 ```
