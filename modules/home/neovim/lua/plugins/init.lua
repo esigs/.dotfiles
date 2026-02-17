@@ -29,8 +29,6 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
-      local lspconfig = require("lspconfig")
-      
       -- Helper for keybindings
       vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(event)
@@ -47,7 +45,7 @@ return {
       })
 
       -- Servers
-      lspconfig.clojure_lsp.setup({})
+      vim.lsp.enable("clojure_lsp")
     end,
   },
   

@@ -14,7 +14,7 @@ opt.clipboard = "unnamedplus"
 opt.number = true
 
 -- Keymaps
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "Project View" })
+vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set("n", "<Esc>", ":noh<CR>", { silent = true })
 vim.keymap.set("n", "p", '"+p', { noremap = true, silent = true })
 
