@@ -17,7 +17,7 @@
     };
 
     # p10k setup
-    initExtra = ''
+    initContent = ''
       # Optional: Source p10k config if it exists
       [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
     '';
