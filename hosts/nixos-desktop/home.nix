@@ -7,6 +7,7 @@
     ../../modules/home/i3.nix
     ../../modules/home/tmux.nix
     ../../modules/home/neovim.nix
+    ../../modules/home/ssh.nix
   ];
 
   home.username = user;

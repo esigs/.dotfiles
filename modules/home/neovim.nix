@@ -9,16 +9,6 @@
   };
 
   home.packages = with pkgs; [
-    # Clojure
-    clojure
-    leiningen
-    babashka
-    clojure-lsp
-    
-    # .NET
-    dotnet-sdk
-    netcoredbg
-    
     # Utils
     ripgrep
     fd
