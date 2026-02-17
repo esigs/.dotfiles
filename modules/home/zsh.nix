@@ -9,8 +9,6 @@
     
     shellAliases = {
       apply = "sudo nixos-rebuild switch --flake . --impure";
-      ll = "ls -l";
-      v = "nvim";
     };
 
     history = {

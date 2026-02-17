@@ -1,11 +1,5 @@
-{ config, pkgs, user, ... }:
+{ config, pkgs, user, local, ... }:
 
-let
-  localFile = "${config.home.homeDirectory}/.config/nixos-config/local.nix";
-  local = if builtins.pathExists localFile
-          then import localFile
-          else throw "Local configuration file not found at ${localFile}. Please create it to proceed.";
-in
 {
   imports = [
     ../../modules/home/zsh.nix
