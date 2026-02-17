@@ -9,6 +9,7 @@ in
 {
   imports = [
     ../../modules/home/zsh.nix
+    ../../modules/home/packages.nix
   ];
 
   home.username = user;
