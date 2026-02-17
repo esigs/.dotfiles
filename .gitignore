@@ -3,3 +3,12 @@ result
 .DS_Store
 *.swp
 local.nix
+
+# Clojure / LSP / Development
+.clj-kondo/
+.lsp/
+.cpcache/
+.nrepl-port
+.shadow-cljs/
+target/
+.calva/
