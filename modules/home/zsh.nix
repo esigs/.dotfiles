@@ -10,6 +10,7 @@
     shellAliases = {
       ls = "ls -la";
       apply = "echo 'Running: sudo nixos-rebuild switch --flake path:. --impure' && sudo nixos-rebuild switch --flake path:. --impure";
+      clean = "echo 'Running: sudo nix-collect-garbage --delete-older-than 7d' && sudo nix-collect-garbage --delete-older-than 7d";
     };
 
     history = {
