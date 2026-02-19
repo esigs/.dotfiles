@@ -2,16 +2,18 @@
 
 {
   home.packages = with pkgs; [
-    nodejs_22
     bitwarden-cli
+    nodejs_22
     
     # Clojure
-    clojure
     babashka
+    clojure
     clojure-lsp
+    clj-kondo
+    polylith
     
     # Utils
-    unzip
     jq
+    unzip
   ];
 }
