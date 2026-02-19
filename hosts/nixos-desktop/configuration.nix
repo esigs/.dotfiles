@@ -110,11 +110,6 @@
   };
 
   programs.zsh.enable = true;
-
-  # Integrated programs
-  programs.firefox.enable = true;
-  programs.git.enable = true;
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -144,6 +139,8 @@
     stdenv.cc.cc.lib
     zlib
   ];
+
+  programs.dconf.enable = true;
 
   environment.sessionVariables = {
     LD_LIBRARY_PATH = "/run/opengl-driver/lib:${pkgs.stdenv.cc.cc.lib}/lib:${pkgs.zlib}/lib";
