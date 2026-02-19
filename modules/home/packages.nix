@@ -17,6 +17,7 @@
     unzip
 
     # C#
+    dotnet-sdk_8
     dotnet-sdk_9
     roslyn-ls
     powershell
