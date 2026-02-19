@@ -19,5 +19,6 @@
     # C#
     dotnet-sdk_9
     roslyn-ls
+    powershell
   ];
 }
