@@ -14,6 +14,24 @@
   home.homeDirectory = "/home/${user}";
   home.stateVersion = "25.11";
 
+
+  # Individual user packages can go here
+  home.packages = with pkgs; [
+    # ripgrep
+    # fd
+  ];
+
+  programs.home-manager.enable = true;
+
+  # Integrated programs
+  programs.firefox.enable = true;
+  programs.chromium = {
+	enable = true;
+	extensions = [
+		{ id = "hdokiejnpimakedhajhdlcegeplioahd"; } # lastpass
+	];
+   };
+
   programs.git = {
     enable = true;
     settings = {
@@ -41,11 +59,30 @@
     ];
   };
 
-  # Individual user packages can go here
-  home.packages = with pkgs; [
-    # ripgrep
-    # fd
-  ];
+  # Dark mode preference
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
+  };
 
-  programs.home-manager.enable = true;
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Adwaita-dark";
+      package = pkgs.gnome-themes-extra;
+    };
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+    };
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+    };
+  };
+
+  qt = {
+    enable = true;
+    platformTheme.name = "gtk";
+    style.name = "adwaita-dark";
+  };
 }
