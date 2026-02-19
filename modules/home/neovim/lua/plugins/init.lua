@@ -58,6 +58,7 @@ return {
     "seblyng/roslyn.nvim",
     ft = "cs",
     opts = {
+      broad_search = true,
       config = {
         -- Pass common settings or capabilities here if needed
         settings = {
