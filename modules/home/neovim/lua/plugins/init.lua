@@ -54,7 +54,21 @@ return {
   },
   
   -- C# / Roslyn
-  { "seblyng/roslyn.nvim", ft = "cs", opts = {} },
+  {
+    "seblyng/roslyn.nvim",
+    ft = "cs",
+    opts = {
+      config = {
+        -- Pass common settings or capabilities here if needed
+        settings = {
+          ["csharp|background_analysis"] = {
+            dotnet_analyzer_diagnostics_scope = "fullSolution",
+            dotnet_compiler_diagnostics_scope = "fullSolution",
+          },
+        },
+      },
+    },
+  },
 
   -- Clojure Specifics
   { "Olical/conjure" },

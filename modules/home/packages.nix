@@ -15,5 +15,9 @@
     # Utils
     jq
     unzip
+
+    # C#
+    dotnet-sdk_9
+    roslyn-ls
   ];
 }
