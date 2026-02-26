@@ -34,8 +34,9 @@
     in {
       nixosConfigurations = {
         nixos-desktop = mkHost "nixos-desktop";
+        nixos-laptop = mkHost "nixos-laptop";
         # Future hosts:
-        # nixos-laptop = mkHost "nixos-laptop";
+        # ...
       };
     };
 }
