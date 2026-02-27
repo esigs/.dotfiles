@@ -102,4 +102,24 @@
       ];
     };
   };
+
+  programs.i3status = {
+    enable = true;
+    enableDefault = false;
+    modules = {
+      "ipv6".enable = false;
+      "wireless _first_".enable = true;
+      "ethernet _first_".enable = true;
+      "battery all" = {
+        enable = true;
+        settings = {
+          format = "%status %percentage %remaining";
+        };
+      };
+      "disk /".enable = true;
+      "load".enable = true;
+      "memory".enable = true;
+      "tztime local".enable = true;
+    };
+  };
 }
