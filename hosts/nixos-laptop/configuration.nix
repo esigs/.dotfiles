@@ -26,6 +26,11 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # Power management
+  services.tlp.enable = true;
+  services.thermald.enable = true;
+  services.upower.enable = true;
+
   # Set your time zone.
   time.timeZone = "America/Toronto";
 
@@ -43,12 +48,32 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
+    wireplumber.extraConfig."10-jabra-priority" = {
+      "monitor.alsa.rules" = [
+        {
+          matches = [
+            { "node.name" = "~alsa_output.usb-0b0e_Jabra_SPEAK_410.*"; }
+          ];
+          actions = {
+            update-props = {
+              "priority.driver" = 1500;
+              "priority.session" = 1500;
+            };
+          };
+        }
+        {
+          matches = [
+            { "node.name" = "~alsa_input.usb-0b0e_Jabra_SPEAK_410.*"; }
+          ];
+          actions = {
+            update-props = {
+              "priority.driver" = 1500;
+              "priority.session" = 1500;
+            };
+          };
+        }
+      ];
+    };
   };
 
   # Enable touchpad support (enabled default in most desktopManager).

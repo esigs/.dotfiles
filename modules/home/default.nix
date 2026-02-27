@@ -17,7 +17,10 @@
   programs.home-manager.enable = true;
 
   # Integrated programs
-  programs.firefox.enable = true;
+  programs.firefox = {
+    enable = true;
+  };
+
   programs.chromium = {
     enable = true;
     extensions = [
