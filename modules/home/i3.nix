@@ -7,6 +7,8 @@
     flameshot
     pulseaudio # for pactl
     xorg.xsetroot
+    networkmanagerapplet
+    blueman
   ];
 
   xsession.windowManager.i3 = {
@@ -15,6 +17,15 @@
       mod = "Mod4";
     in {
       modifier = mod;
+
+      # Enable system tray
+      bars = [
+        {
+          position = "bottom";
+          statusCommand = "${pkgs.i3status}/bin/i3status";
+          trayOutput = "primary";
+        }
+      ];
 
       keybindings = lib.mkOptionDefault {
         "${mod}+Return" = "exec alacritty";
@@ -89,17 +100,11 @@
 
       workspaceLayout = "default";
       
-      # Ensure new windows are split horizontally (side-by-side)
-      bars = [
-        {
-          position = "bottom";
-          statusCommand = "${pkgs.i3status}/bin/i3status";
-        }
-      ];
-
       # Force horizontal split for new windows to ensure side-by-side spawning
       startup = [
         { command = "xsetroot -solid '#000000'"; always = true; notification = false; }
+        { command = "nm-applet"; always = true; notification = false; }
+        { command = "blueman-applet"; always = true; notification = false; }
         { command = "i3-msg split h"; always = true; notification = false; }
       ];
     };

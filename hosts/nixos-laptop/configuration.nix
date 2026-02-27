@@ -26,6 +26,10 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # Bluetooth
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
+
   # Power management
   services.tlp.enable = true;
   services.thermald.enable = true;
