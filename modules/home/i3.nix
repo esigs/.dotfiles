@@ -107,19 +107,41 @@
     enable = true;
     enableDefault = false;
     modules = {
-      "ipv6".enable = false;
-      "wireless _first_".enable = true;
-      "ethernet _first_".enable = true;
+      "ipv6" = {
+        enable = false;
+        position = 1;
+      };
+      "wireless _first_" = {
+        enable = true;
+        position = 2;
+      };
+      "ethernet _first_" = {
+        enable = true;
+        position = 3;
+      };
       "battery all" = {
         enable = true;
+        position = 4;
         settings = {
           format = "%status %percentage %remaining";
         };
       };
-      "disk /".enable = true;
-      "load".enable = true;
-      "memory".enable = true;
-      "tztime local".enable = true;
+      "disk /" = {
+        enable = true;
+        position = 5;
+      };
+      "load" = {
+        enable = true;
+        position = 6;
+      };
+      "memory" = {
+        enable = true;
+        position = 7;
+      };
+      "tztime local" = {
+        enable = true;
+        position = 8;
+      };
     };
   };
 }
