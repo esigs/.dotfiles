@@ -6,6 +6,7 @@
     dmenu
     flameshot
     pulseaudio # for pactl
+    xorg.xsetroot
   ];
 
   xsession.windowManager.i3 = {
@@ -98,6 +99,7 @@
 
       # Force horizontal split for new windows to ensure side-by-side spawning
       startup = [
+        { command = "xsetroot -solid '#000000'"; always = true; notification = false; }
         { command = "i3-msg split h"; always = true; notification = false; }
       ];
     };
