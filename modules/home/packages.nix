@@ -15,6 +15,7 @@
     # Utils
     jq
     unzip
+    arandr
 
     # C#
     (with dotnetCorePackages; combinePackages [
