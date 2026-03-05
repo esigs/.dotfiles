@@ -49,7 +49,22 @@ return {
       })
 
       -- Servers
-      vim.lsp.enable("clojure_lsp")
+      require("lspconfig").clojure_lsp.setup({
+        settings = {
+          ["clojure-lsp"] = {
+            ["disabled-features"] = {
+              "refactor",
+              "diagnostics",
+              "formatting",
+              "hover",
+              "code-actions",
+              "semantic-tokens",
+              "document-highlight",
+              "document-symbol",
+            },
+          },
+        },
+      })
     end,
   },
   
@@ -73,9 +88,6 @@ return {
 
   -- Clojure Specifics
   { "Olical/conjure" },
-  { "gpanders/nvim-parinfer" },
-  { "guns/vim-sexp" },
-  { "tpope/vim-sexp-mappings-for-regular-people" },
 
   -- Completion
   {
