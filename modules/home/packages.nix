@@ -16,6 +16,8 @@
     jq
     unzip
     arandr
+    pavucontrol
+    discord
 
     # C#
     (with dotnetCorePackages; combinePackages [
