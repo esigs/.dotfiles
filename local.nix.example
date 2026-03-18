@@ -1,0 +1,12 @@
+{
+  user = "yourusername";
+  polarity = "dark"; # "dark" or "light"
+  personal = {
+    name = "Your Name";
+    email = "you@example.com";
+  };
+  work = {
+    name = "Your Name";
+    email = "you@work.com";
+  };
+}

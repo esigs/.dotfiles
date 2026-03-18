@@ -4,7 +4,7 @@
   programs.tmux = {
     enable = true;
     shell = "${pkgs.zsh}/bin/zsh";
-    terminal = "screen-256color";
+    terminal = "tmux-256color";
     historyLimit = 10000;
     extraConfig = ''
       # Open new windows in specific directories
