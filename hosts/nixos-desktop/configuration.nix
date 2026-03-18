@@ -9,8 +9,6 @@
 
   networking.hostName = "nixos-desktop";
 
-  boot.initrd.luks.devices."luks-044569af-44d1-4913-bace-ff6ffe4bf0ef".device = "/dev/disk/by-uuid/044569af-44d1-4913-bace-ff6ffe4bf0ef";
-
   # NVIDIA GPU
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.graphics = {
