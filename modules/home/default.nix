@@ -21,6 +21,14 @@
     enable = true;
     settings = {
       init.defaultBranch = "main";
+      pull.rebase = true;
+      push.autoSetupRemote = true;
+      fetch.prune = true;
+      rebase.autoStash = true;
+      merge.conflictstyle = "zdiff3";
+      diff.algorithm = "histogram";
+      core.fsmonitor = true;
+      core.untrackedCache = true;
     };
     includes = [
       {
