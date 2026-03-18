@@ -55,6 +55,7 @@
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
+    silent = true;
   };
 
   # Stylix manages neovim config via symlink, disable its auto-theming for neovim
