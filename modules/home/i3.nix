@@ -23,6 +23,9 @@
           position = "bottom";
           statusCommand = "${pkgs.i3status}/bin/i3status";
           trayOutput = "primary";
+          fonts = {
+            size = 14.0;
+          };
         }
       ];
 
