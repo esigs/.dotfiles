@@ -1,4 +1,4 @@
-{ config, pkgs, user, local, ... }:
+{ config, user, local, ... }:
 
 {
   imports = [
@@ -8,6 +8,7 @@
     ./tmux.nix
     ./neovim.nix
     ./ssh.nix
+    ./browsers.nix
   ];
 
   home.username = user;
@@ -15,18 +16,6 @@
   home.stateVersion = "25.11";
 
   programs.home-manager.enable = true;
-
-  # Integrated programs
-  programs.firefox = {
-    enable = true;
-  };
-
-  programs.chromium = {
-    enable = true;
-    extensions = [
-      { id = "hdokiejnpimakedhajhdlcegeplioahd"; } # lastpass
-    ];
-  };
 
   programs.git = {
     enable = true;
@@ -55,30 +44,6 @@
     ];
   };
 
-  # Dark mode preference
-  dconf.settings = {
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-    };
-  };
-
-  gtk = {
-    enable = true;
-    theme = {
-      name = "Adwaita-dark";
-      package = pkgs.gnome-themes-extra;
-    };
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
-  };
-
-  qt = {
-    enable = true;
-    platformTheme.name = "gtk";
-    style.name = "adwaita-dark";
-  };
+  # Stylix manages neovim config via symlink, disable its auto-theming for neovim
+  stylix.targets.neovim.enable = false;
 }

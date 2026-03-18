@@ -3,7 +3,6 @@
 {
   home.packages = with pkgs; [
     alacritty
-    dmenu
     flameshot
     pulseaudio # for pactl
     xorg.xsetroot
@@ -38,8 +37,6 @@
         "XF86AudioMicMute" = "exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle";
         "XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%";
         "XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%";
-        "${mod}+Ctrl+Up" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%";
-        "${mod}+Ctrl+Down" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%";
 
         # Focus
         "${mod}+j" = "focus left";

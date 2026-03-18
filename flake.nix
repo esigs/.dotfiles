@@ -7,9 +7,13 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    stylix = {
+      url = "github:danth/stylix/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, stylix, ... }@inputs:
     let
       localFile = ./local.nix;
       local = if builtins.pathExists localFile
@@ -23,6 +27,7 @@
         specialArgs = { inherit inputs user local; };
         modules = [
           ./hosts/${hostname}/configuration.nix
+          stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager {
             home-manager.extraSpecialArgs = { inherit inputs user local; };
             home-manager.useGlobalPkgs = true;

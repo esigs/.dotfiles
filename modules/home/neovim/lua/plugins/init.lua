@@ -49,7 +49,7 @@ return {
       })
 
       -- Servers
-      require("lspconfig").clojure_lsp.setup({
+      vim.lsp.config('clojure_lsp', {
         settings = {
           ["clojure-lsp"] = {
             ["disabled-features"] = {
@@ -65,6 +65,7 @@ return {
           },
         },
       })
+      vim.lsp.enable('clojure_lsp')
     end,
   },
   
