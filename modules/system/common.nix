@@ -36,6 +36,9 @@
 
   programs.zsh.enable = true;
 
+  virtualisation.docker.enable = true;
+  virtualisation.docker.autoPrune.enable = true;
+
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
