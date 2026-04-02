@@ -26,18 +26,19 @@
     pulse.enable = true;
   };
 
+  # Docker
+  virtualisation.docker.enable = true;
+  virtualisation.docker.autoPrune.enable = true;
+
   # User account
   users.users.${user} = {
     isNormalUser = true;
     description = local.personal.name;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker"];
     shell = pkgs.zsh;
   };
 
   programs.zsh.enable = true;
-
-  virtualisation.docker.enable = true;
-  virtualisation.docker.autoPrune.enable = true;
 
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
