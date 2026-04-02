@@ -13,10 +13,11 @@
     polylith
     
     # Utils
-    jq
-    unzip
     arandr
+    dbeaver-bin
+    jq
     pavucontrol
+    unzip
 
   ];
 }
