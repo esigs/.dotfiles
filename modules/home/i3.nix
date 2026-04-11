@@ -21,7 +21,7 @@
       bars = [
         {
           position = "bottom";
-          statusCommand = "${pkgs.i3status}/bin/i3status";
+          statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3status-rust/config-default.toml";
           trayOutput = "primary";
           fonts = {
             size = 14.0;
@@ -110,45 +110,31 @@
     };
   };
 
-  programs.i3status = {
+  programs.i3status-rust = {
     enable = true;
-    enableDefault = false;
-    modules = {
-      "ipv6" = {
-        enable = false;
-        position = 1;
-      };
-      "wireless _first_" = {
-        enable = true;
-        position = 2;
-      };
-      "ethernet _first_" = {
-        enable = true;
-        position = 3;
-      };
-      "battery all" = {
-        enable = true;
-        position = 4;
-        settings = {
-          format = "%status %percentage %remaining";
-        };
-      };
-      "disk /" = {
-        enable = true;
-        position = 5;
-      };
-      "load" = {
-        enable = true;
-        position = 6;
-      };
-      "memory" = {
-        enable = true;
-        position = 7;
-      };
-      "tztime local" = {
-        enable = true;
-        position = 8;
-      };
+    bars.default = {
+      blocks = [
+        { block = "net"; }
+        {
+          block = "battery";
+          format = " $icon $percentage $time ";
+          missing_format = "";
+        }
+        { block = "disk_space"; path = "/"; info_type = "available"; }
+        { block = "load"; }
+        { block = "memory"; }
+        {
+          block = "sound";
+          driver = "pulseaudio";
+          show_volume_when_muted = true;
+          click = [{ button = "left"; cmd = "pavucontrol"; }];
+        }
+        {
+          block = "time";
+          interval = 5;
+          format = " $timestamp.datetime(f:'%a %d/%m %R') ";
+        }
+      ];
     };
   };
 }
