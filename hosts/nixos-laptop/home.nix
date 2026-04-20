@@ -34,6 +34,6 @@
   xsession.windowManager.i3.config.startup = lib.mkAfter [
     # Monitor setup: work (DP-2-1 left of laptop) or home (HDMI-1 above laptop)
     { command = "xrandr --output DP-2-1 --auto --left-of eDP-1"; always = true; notification = false; }
-    { command = "xrandr --output HDMI-1 --auto --above eDP-1"; always = true; notification = false; }
+    { command = "xrandr --output HDMI-1 --auto --left-of eDP-1"; always = true; notification = false; }
   ];
 }
