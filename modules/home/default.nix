@@ -32,6 +32,18 @@
     };
     includes = [
       {
+        condition = "gitdir:${config.home.homeDirectory}/repos/brokerdev/";
+        contents = {
+          user = {
+            name = local.work2.name;
+            email = local.work2.email;
+            signingKey = local.work2.signingKey;
+          };
+          commit.gpgsign = true;
+          gpg.format = "ssh";
+        };
+      }
+      {
         condition = "gitdir:${config.home.homeDirectory}/repos/work/";
         contents = {
           user = {
