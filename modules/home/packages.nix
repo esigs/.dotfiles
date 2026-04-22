@@ -18,6 +18,7 @@
     jq
     pavucontrol
     unzip
+    claude-code
 
   ];
 }
