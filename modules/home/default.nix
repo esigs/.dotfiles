@@ -41,7 +41,10 @@
           };
           commit.gpgsign = true;
           gpg.format = "ssh";
+          gpg.ssh.allowedSignersFile = "${config.home.homeDirectory}/.ssh/allowed_signers";
         };
+
+
       }
       {
         condition = "gitdir:${config.home.homeDirectory}/repos/work/";
@@ -63,6 +66,11 @@
       }
     ];
   };
+
+  home.file.".ssh/allowed_signers".text = ''
+  	${local.work2.email} ${builtins.readFile "${local.work2.signingKey}.pub"}
+	'';
+
 
   programs.direnv = {
     enable = true;
