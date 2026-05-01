@@ -19,6 +19,7 @@
     pavucontrol
     unzip
     claude-code
+    libreoffice
 
   ];
 }
