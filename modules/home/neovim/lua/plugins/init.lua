@@ -52,15 +52,10 @@ return {
       vim.lsp.config('clojure_lsp', {
         settings = {
           ["clojure-lsp"] = {
+            -- Keep lightweight: disable heavy/slow features only
             ["disabled-features"] = {
-              "refactor",
-              "diagnostics",
-              "formatting",
-              "hover",
-              "code-actions",
-              "semantic-tokens",
-              "document-highlight",
-              "document-symbol",
+              "semantic-tokens",    -- can cause lag on large files
+              "document-highlight", -- highlighting all refs under cursor
             },
           },
         },
@@ -104,6 +99,7 @@ return {
     config = function()
       local cmp = require("cmp")
       cmp.setup({
+        completion = { autocomplete = false }, -- only show on <C-Space>
         snippet = { expand = function(args) require("luasnip").lsp_expand(args.body) end },
         mapping = cmp.mapping.preset.insert({
           ["<Tab>"] = cmp.mapping.select_next_item(),
