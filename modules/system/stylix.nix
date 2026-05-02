@@ -2,8 +2,8 @@
 
 let
   scheme = if local.polarity == "light"
-    then "${pkgs.base16-schemes}/share/themes/gruvbox-light-hard.yaml"
-    else "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
+    then "${pkgs.base16-schemes}/share/themes/catppuccin-latte.yaml"
+    else "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
 in {
   stylix = {
     enable = true;

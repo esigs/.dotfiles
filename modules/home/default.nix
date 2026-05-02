@@ -78,6 +78,7 @@
     silent = true;
   };
 
-  # Stylix manages neovim config via symlink, disable its auto-theming for neovim
+  # Neovim theme handled via base16-nvim plugin in neovim/lua/plugins/init.lua
+  # (reads from ~/.config/stylix/palette.json)
   stylix.targets.neovim.enable = false;
 }

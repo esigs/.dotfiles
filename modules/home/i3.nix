@@ -2,7 +2,6 @@
 
 {
   home.packages = with pkgs; [
-    alacritty
     flameshot
     pulseaudio # for pactl
     xorg.xsetroot
@@ -109,6 +108,8 @@
       ];
     };
   };
+
+  programs.alacritty.enable = true;
 
   programs.i3status-rust = {
     enable = true;
