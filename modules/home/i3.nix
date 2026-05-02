@@ -1,6 +1,11 @@
 { config, pkgs, lib, ... }:
 
-{
+let
+  # Read Stylix palette for i3status-rust theming
+  paletteJSON = builtins.readFile "${config.xdg.configHome}/stylix/palette.json";
+  palette = builtins.fromJSON paletteJSON;
+  c = color: "#${palette.${color}}FF"; # Add alpha channel
+in {
   home.packages = with pkgs; [
     flameshot
     pulseaudio # for pactl
@@ -24,6 +29,31 @@
           trayOutput = "primary";
           fonts = {
             size = 14.0;
+          };
+          colors = {
+            background = c "base00";
+            statusline = c "base05";
+            separator = c "base03";
+            focusedWorkspace = {
+              border = c "base0D";
+              background = c "base0D";
+              text = c "base00";
+            };
+            activeWorkspace = {
+              border = c "base02";
+              background = c "base02";
+              text = c "base05";
+            };
+            inactiveWorkspace = {
+              border = c "base00";
+              background = c "base00";
+              text = c "base05";
+            };
+            urgentWorkspace = {
+              border = c "base08";
+              background = c "base08";
+              text = c "base00";
+            };
           };
         }
       ];
@@ -114,6 +144,21 @@
   programs.i3status-rust = {
     enable = true;
     bars.default = {
+      theme = "plain";
+      settings.theme.overrides = {
+        idle_bg = c "base00";
+        idle_fg = c "base05";
+        info_bg = c "base0D";
+        info_fg = c "base00";
+        good_bg = c "base0B";
+        good_fg = c "base00";
+        warning_bg = c "base0A";
+        warning_fg = c "base00";
+        critical_bg = c "base08";
+        critical_fg = c "base00";
+        separator_bg = c "base00";
+        separator = " ";
+      };
       blocks = [
         { block = "net"; }
         {

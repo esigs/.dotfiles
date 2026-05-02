@@ -1,33 +1,38 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, config, ... }:
 
-{
+let
+  paletteJSON = builtins.readFile "${config.xdg.configHome}/stylix/palette.json";
+  palette = builtins.fromJSON paletteJSON;
+  c = color: "#${palette.${color}}FF";
+
+  barColors = {
+    background = c "base00";
+    statusline = c "base05";
+    separator = c "base03";
+    focusedWorkspace = { border = c "base0D"; background = c "base0D"; text = c "base00"; };
+    activeWorkspace = { border = c "base02"; background = c "base02"; text = c "base05"; };
+    inactiveWorkspace = { border = c "base00"; background = c "base00"; text = c "base05"; };
+    urgentWorkspace = { border = c "base08"; background = c "base08"; text = c "base00"; };
+  };
+
+  mkBar = { output, fontSize, tray }: {
+    position = "bottom";
+    statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3status-rust/config-default.toml";
+    trayOutput = tray;
+    extraConfig = "output ${output}";
+    fonts = { size = fontSize; };
+    colors = barColors;
+  };
+in {
   imports = [
     ../../modules/home/default.nix
   ];
 
-  # Two bars: external display at 14pt, internal display at 16pt
+  # Multi-monitor bars
   xsession.windowManager.i3.config.bars = lib.mkForce [
-    {
-      position = "bottom";
-      statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3status-rust/config-default.toml";
-      trayOutput = "DP-2-1";
-      extraConfig = "output DP-2-1";
-      fonts = { size = 14.0; };
-    }
-    {
-      position = "bottom";
-      statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3status-rust/config-default.toml";
-      trayOutput = "eDP-1";
-      extraConfig = "output eDP-1";
-      fonts = { size = 16.0; };
-    }
-    {
-      position = "bottom";
-      statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3status-rust/config-default.toml";
-      trayOutput = "HDMI-1";
-      extraConfig = "output HDMI-1";
-      fonts = { size = 14.0; };
-    }
+    (mkBar { output = "DP-2-1"; fontSize = 14.0; tray = "DP-2-1"; })
+    (mkBar { output = "eDP-1"; fontSize = 16.0; tray = "eDP-1"; })
+    (mkBar { output = "HDMI-1"; fontSize = 14.0; tray = "HDMI-1"; })
   ];
 
   # Laptop-specific user settings
