@@ -78,6 +78,25 @@
     silent = true;
   };
 
+  programs.starship = {
+    enable = true;
+    settings = {
+      add_newline = false;
+      line_break.disabled = true;
+      command_timeout = 1000;
+      directory.truncation_length = 3;
+      git_status.disabled = false;
+      nix_shell.disabled = true;
+      # Disable language version clutter
+      java.disabled = true;
+      nodejs.disabled = true;
+      python.disabled = true;
+      rust.disabled = true;
+      golang.disabled = true;
+      package.disabled = true;
+    };
+  };
+
   # Neovim theme handled via base16-nvim plugin in neovim/lua/plugins/init.lua
   # (reads from ~/.config/stylix/palette.json)
   stylix.targets.neovim.enable = false;
