@@ -7,6 +7,7 @@ let
 in {
   stylix = {
     enable = true;
+    image = ../../wallpaper.jpg;
     base16Scheme = scheme;
     polarity = local.polarity;
 

@@ -5,10 +5,7 @@
   services.xserver.enable = true;
 
   # Enable the i3 window manager.
-  services.xserver.displayManager.lightdm = {
-    enable = true;
-    background = "#000000";
-  };
+  services.xserver.displayManager.lightdm.enable = true;
   services.xserver.windowManager.i3 = {
     enable = true;
     extraPackages = with pkgs; [

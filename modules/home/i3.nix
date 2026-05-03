@@ -5,13 +5,15 @@ let
   paletteJSON = builtins.readFile "${config.xdg.configHome}/stylix/palette.json";
   palette = builtins.fromJSON paletteJSON;
   c = color: "#${palette.${color}}FF"; # Add alpha channel
+  wallpaper = ../../wallpaper.jpg;
 in {
   home.packages = with pkgs; [
     flameshot
     pulseaudio # for pactl
-    xorg.xsetroot
     networkmanagerapplet
     blueman
+    feh # for wallpaper
+    papirus-icon-theme
   ];
 
   xsession.windowManager.i3 = {
@@ -61,7 +63,7 @@ in {
       keybindings = lib.mkOptionDefault {
         "${mod}+Return" = "exec alacritty";
         "${mod}+Shift+q" = "kill";
-        "${mod}+d" = "exec --no-startup-id dmenu_run";
+        "${mod}+d" = "exec --no-startup-id ${pkgs.rofi}/bin/rofi -show drun";
         "Print" = "exec flameshot gui";
 
         # Media keys
@@ -131,7 +133,7 @@ in {
       
       # Force horizontal split for new windows to ensure side-by-side spawning
       startup = [
-        { command = "xsetroot -solid '#000000'"; always = true; notification = false; }
+        { command = "${pkgs.feh}/bin/feh --bg-fill ${wallpaper}"; always = true; notification = false; }
         { command = "nm-applet"; always = true; notification = false; }
         { command = "blueman-applet"; always = true; notification = false; }
         { command = "i3-msg split h"; always = true; notification = false; }
@@ -140,6 +142,17 @@ in {
   };
 
   programs.alacritty.enable = true;
+  programs.rofi = {
+    enable = true;
+    font = lib.mkForce "JetBrainsMono Nerd Font Mono 14";
+    extraConfig = {
+      show-icons = true;
+      icon-theme = "Papirus-Dark";
+      display-drun = "  Apps";
+      drun-display-format = "{name}";
+      modi = "drun,run,window";
+    };
+  };
 
   programs.i3status-rust = {
     enable = true;
