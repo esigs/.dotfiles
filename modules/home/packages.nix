@@ -15,6 +15,7 @@
     # Utils
     arandr
     btop
+    inotify-tools
     dbeaver-bin
     jq
     pavucontrol

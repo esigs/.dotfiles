@@ -84,6 +84,7 @@ return {
 
       -- Servers
       vim.lsp.config('clojure_lsp', {
+        root_markers = { '.git' },
         settings = {
           ["clojure-lsp"] = {
             -- Keep lightweight: disable heavy/slow features only
