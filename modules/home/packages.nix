@@ -14,6 +14,7 @@
     
     # Utils
     arandr
+    btop
     dbeaver-bin
     jq
     pavucontrol
