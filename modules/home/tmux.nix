@@ -31,6 +31,16 @@
       bind -r > swap-window -t +1\; select-window -t +1
 
       bind j command-prompt -p "join pane from window: " "join-pane -s '%%'"
+
+      bind R switch-client -T resize-mode
+      bind -T resize-mode h resize-pane -L 5 \; switch-client -T resize-mode
+      bind -T resize-mode j resize-pane -D 3 \; switch-client -T resize-mode
+      bind -T resize-mode k resize-pane -U 3 \; switch-client -T resize-mode
+      bind -T resize-mode l resize-pane -R 5 \; switch-client -T resize-mode
+      bind -T resize-mode H resize-pane -L 20 \; switch-client -T resize-mode
+      bind -T resize-mode J resize-pane -D 10 \; switch-client -T resize-mode
+      bind -T resize-mode K resize-pane -U 10 \; switch-client -T resize-mode
+      bind -T resize-mode L resize-pane -R 20 \; switch-client -T resize-mode
     '';
   };
 }
