@@ -9,20 +9,8 @@
 
   networking.hostName = "nixos-desktop";
 
-  # NVIDIA GPU
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
-    open = false;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
+  # NVIDIA driver + base graphics live in hardware-configuration.nix; only the 32-bit override is here.
+  hardware.graphics.enable32Bit = true;
 
   programs.steam = {
     enable = true;

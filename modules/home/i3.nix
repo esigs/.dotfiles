@@ -1,62 +1,34 @@
 { config, pkgs, lib, ... }:
 
 let
-  # Read Stylix palette for i3status-rust theming
-  paletteJSON = builtins.readFile "${config.xdg.configHome}/stylix/palette.json";
-  palette = builtins.fromJSON paletteJSON;
-  c = color: "#${palette.${color}}FF"; # Add alpha channel
+  inherit (import ./lib/palette.nix { inherit config; }) c;
+  barColors = import ./lib/i3-bar-colors.nix { inherit c; };
   wallpaper = ../../wallpaper.jpg;
+  mod = "Mod4";
 in {
+  imports = [ ./i3-status.nix ];
+
   home.packages = with pkgs; [
     flameshot
-    pulseaudio # for pactl
+    pulseaudio
     networkmanagerapplet
     blueman
-    feh # for wallpaper
+    feh
     papirus-icon-theme
   ];
 
   xsession.windowManager.i3 = {
     enable = true;
-    config = let
-      mod = "Mod4";
-    in {
+    config = {
       modifier = mod;
 
-      # Enable system tray
       bars = [
         {
           position = "bottom";
           statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3status-rust/config-default.toml";
           trayOutput = "primary";
-          fonts = {
-            size = 14.0;
-          };
-          colors = {
-            background = c "base00";
-            statusline = c "base05";
-            separator = c "base03";
-            focusedWorkspace = {
-              border = c "base0D";
-              background = c "base0D";
-              text = c "base00";
-            };
-            activeWorkspace = {
-              border = c "base02";
-              background = c "base02";
-              text = c "base05";
-            };
-            inactiveWorkspace = {
-              border = c "base00";
-              background = c "base00";
-              text = c "base05";
-            };
-            urgentWorkspace = {
-              border = c "base08";
-              background = c "base08";
-              text = c "base00";
-            };
-          };
+          fonts.size = 14.0;
+          colors = barColors;
         }
       ];
 
@@ -66,31 +38,26 @@ in {
         "${mod}+d" = "exec --no-startup-id ${pkgs.rofi}/bin/rofi -show drun";
         "Print" = "exec flameshot gui";
 
-        # Media keys
         "XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle";
         "XF86AudioMicMute" = "exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle";
         "XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%";
         "XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%";
 
-        # Focus
         "${mod}+j" = "focus left";
         "${mod}+k" = "focus down";
         "${mod}+l" = "focus up";
         "${mod}+semicolon" = "focus right";
 
-        # Alternative Focus
         "${mod}+Left" = "focus left";
         "${mod}+Down" = "focus down";
         "${mod}+Up" = "focus up";
         "${mod}+Right" = "focus right";
 
-        # Move
         "${mod}+Shift+j" = "move left";
         "${mod}+Shift+k" = "move down";
         "${mod}+Shift+l" = "move up";
         "${mod}+Shift+semicolon" = "move right";
 
-        # Alternative Move
         "${mod}+Shift+Left" = "move left";
         "${mod}+Shift+Down" = "move down";
         "${mod}+Shift+Up" = "move up";
@@ -100,7 +67,6 @@ in {
         "${mod}+Shift+space" = "floating toggle";
         "${mod}+space" = "focus mode_toggle";
 
-        # Workspaces
         "${mod}+1" = "workspace number 1";
         "${mod}+2" = "workspace number 2";
         "${mod}+3" = "workspace number 3";
@@ -112,7 +78,6 @@ in {
         "${mod}+9" = "workspace number 9";
         "${mod}+0" = "workspace number 10";
 
-        # Move to Workspaces
         "${mod}+Shift+1" = "move container to workspace number 1";
         "${mod}+Shift+2" = "move container to workspace number 2";
         "${mod}+Shift+3" = "move container to workspace number 3";
@@ -130,18 +95,19 @@ in {
       };
 
       workspaceLayout = "default";
-      
-      # Force horizontal split for new windows to ensure side-by-side spawning
+
       startup = [
         { command = "${pkgs.feh}/bin/feh --bg-fill ${wallpaper}"; always = true; notification = false; }
         { command = "nm-applet"; always = true; notification = false; }
         { command = "blueman-applet"; always = true; notification = false; }
+        # Force horizontal split so new windows tile side-by-side.
         { command = "i3-msg split h"; always = true; notification = false; }
       ];
     };
   };
 
   programs.alacritty.enable = true;
+
   programs.rofi = {
     enable = true;
     font = lib.mkForce "JetBrainsMono Nerd Font Mono 14";
@@ -151,49 +117,6 @@ in {
       display-drun = "  Apps";
       drun-display-format = "{name}";
       modi = "drun,run,window";
-    };
-  };
-
-  programs.i3status-rust = {
-    enable = true;
-    bars.default = {
-      theme = "plain";
-      settings.theme.overrides = {
-        idle_bg = c "base00";
-        idle_fg = c "base05";
-        info_bg = c "base0D";
-        info_fg = c "base00";
-        good_bg = c "base0B";
-        good_fg = c "base00";
-        warning_bg = c "base0A";
-        warning_fg = c "base00";
-        critical_bg = c "base08";
-        critical_fg = c "base00";
-        separator_bg = c "base00";
-        separator = " ";
-      };
-      blocks = [
-        { block = "net"; }
-        {
-          block = "battery";
-          format = " $icon $percentage $time ";
-          missing_format = "";
-        }
-        { block = "disk_space"; path = "/"; info_type = "available"; }
-        { block = "load"; }
-        { block = "memory"; }
-        {
-          block = "sound";
-          driver = "pulseaudio";
-          show_volume_when_muted = true;
-          click = [{ button = "left"; cmd = "pavucontrol"; }];
-        }
-        {
-          block = "time";
-          interval = 5;
-          format = " $timestamp.datetime(f:'%a %d/%m %R') ";
-        }
-      ];
     };
   };
 }
