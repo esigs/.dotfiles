@@ -20,6 +20,9 @@
       # Set vi mode
       set-window-option -g mode-keys vi
 
+      # Switch to another session instead of detaching when one is killed.
+      set -g detach-on-destroy off
+
       # Copy mode keybindings (Vi style)
       bind-key -T copy-mode-vi v send-keys -X begin-selection
       bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle \; send -X begin-selection
