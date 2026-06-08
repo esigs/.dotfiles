@@ -26,6 +26,9 @@
     ripgrep
     fd
     tree-sitter
+
+    # Language servers
+    pyright
   ];
 
   # Manage Neovim config directly from files inside the Nix repo

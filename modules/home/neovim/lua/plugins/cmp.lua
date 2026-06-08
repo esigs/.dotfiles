@@ -11,7 +11,6 @@ return {
   config = function()
     local cmp = require("cmp")
     cmp.setup({
-      completion = { autocomplete = false },
       snippet = { expand = function(args) require("luasnip").lsp_expand(args.body) end },
       mapping = cmp.mapping.preset.insert({
         ["<Tab>"] = cmp.mapping.select_next_item(),
