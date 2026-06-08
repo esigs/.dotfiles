@@ -32,6 +32,9 @@
 
       bind j command-prompt -p "join pane from window: " "join-pane -s '%%'"
 
+      bind '"' split-window -v -c "#{pane_current_path}"
+      bind % split-window -h -c "#{pane_current_path}"
+
       bind R switch-client -T resize-mode
       bind -T resize-mode h resize-pane -L 5 \; switch-client -T resize-mode
       bind -T resize-mode j resize-pane -D 3 \; switch-client -T resize-mode
