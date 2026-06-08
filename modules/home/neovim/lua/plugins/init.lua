@@ -52,7 +52,6 @@ return {
     build = ":TSUpdate",
     config = function()
       require("nvim-treesitter").setup({
-        ensure_installed = { "clojure", "c_sharp", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline" },
         highlight = { enable = true },
         indent = { enable = true },
       })

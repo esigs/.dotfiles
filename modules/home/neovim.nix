@@ -6,6 +6,19 @@
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
+    plugins = with pkgs.vimPlugins; [
+      (nvim-treesitter.withPlugins (p: [
+        p.clojure
+        p.c-sharp
+        p.python
+        p.lua
+        p.vim
+        p.vimdoc
+        p.query
+        p.markdown
+        p.markdown_inline
+      ]))
+    ];
   };
 
   home.packages = with pkgs; [
